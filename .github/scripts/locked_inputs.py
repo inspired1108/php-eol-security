@@ -42,6 +42,7 @@ ORACLE_PAGES = {
 }
 NGINX_KEYS_PAGE = 'https://nginx.org/en/pgp_keys.html'
 COMPOSER_RELEASE = 'https://github.com/composer/composer/releases/download/{}/composer.phar'
+MARIADB_API = 'https://downloads.mariadb.org/rest-api/mariadb/{}/'
 USER_AGENT = 'php-eol-security-locked-inputs'
 
 # PGO files the SDK fetches only when absent from its work directory, and where
@@ -256,6 +257,29 @@ def oracle_published_sha256(arch, filename):
     return match.group(1) if match else None
 
 
+def mariadb_api_sha256(url):
+    """SHA-256 of a MariaDB package as listed by the downloads.mariadb.org API."""
+    name = url.rsplit('/', 1)[1]
+    version = re.search(r'/mariadb-([\d.]+)/', url).group(1)
+    data = read_url(MARIADB_API.format(version), required=False)
+    if data is None:
+        return None
+    try:
+        stack = [json.loads(data)]
+    except ValueError:
+        return None
+    while stack:
+        item = stack.pop()
+        if isinstance(item, dict):
+            if item.get('file_name') == name and isinstance(item.get('checksum'), dict):
+                value = item['checksum'].get('sha256sum')
+                return value.lower() if value else None
+            stack.extend(item.values())
+        elif isinstance(item, list):
+            stack.extend(item)
+    return None
+
+
 def nginx_signer(url, path):
     """Fingerprint of the key that signed url, or None when it cannot be checked."""
     page = read_url(NGINX_KEYS_PAGE, required=False)
@@ -361,12 +385,20 @@ def cmd_lock(args):
                     return f'OpenPGP signature by `{signer}`: compare with {NGINX_KEYS_PAGE}'
             elif seed == 'package_cache/mariadb.zip':
                 def check(path, sha256, url=url):
-                    sums = (read_url(url.rsplit('/', 1)[0] + '/sha256sums.txt', required=False) or b'').decode()
-                    published = re.search(r'^([0-9a-f]{64})\s+\*?' + re.escape(url.rsplit('/', 1)[1]) + r'\s*$', sums, re.M)
-                    if not published or published.group(1) != sha256:
-                        alerts.append(f'`{url}` does not match sha256sums.txt')
-                        return '**MISMATCH with sha256sums.txt**'
-                    return 'matches sha256sums.txt (same server)'
+                    directory, name = url.rsplit('/', 1)
+                    sums = (read_url(directory + '/sha256sums.txt', required=False) or b'').decode('utf-8', 'replace')
+                    # "<sha256>  name", "<sha256> *name" or with a path before the name
+                    listed = re.search(r'^([0-9a-f]{64})\s+\*?(?:\S*/)?' + re.escape(name) + r'\s*$', sums, re.M | re.I)
+                    listed = listed.group(1).lower() if listed else None
+                    api = mariadb_api_sha256(url)
+                    found = [f'sha256sums.txt: {listed or "not listed"}', f'downloads.mariadb.org API: {api or "not listed"}']
+                    if sha256 not in (listed, api) or None not in (listed, api) and listed != api:
+                        lines = [f'  {line}' for line in sums.splitlines() if name in line][:5]
+                        alerts.append(f'`{url}`: {sha256}; ' + '; '.join(found)
+                                      + ('\n' + '\n'.join(lines) if lines else ''))
+                        return '**MISMATCH** (' + '; '.join(found) + ')'
+                    return 'matches ' + ' and '.join(
+                        src for src, value in (('sha256sums.txt', listed), ('the downloads.mariadb.org API', api)) if value)
             else:
                 def check(path, sha256, url=url):
                     version = url.split('/')[-2]
