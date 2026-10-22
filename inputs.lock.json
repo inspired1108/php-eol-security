@@ -1,0 +1,1113 @@
+{
+  "schema": 1,
+  "about": "Every external input of the Windows build, pinned by SHA-256 (files) or commit (git). The build downloads and checks them before compiling and refuses anything not listed here. Entries without a sha256 are filled by the 'Lock inputs' workflow (.github/workflows/lock-inputs.yml), reviewed, then committed. Keys are the URLs the builder requests; 'fetch' is the immutable URL actually downloaded when the requested one is a moving 'latest' link.",
+  "git": {
+    "https://github.com/php/php-sdk-binary-tools/archive/php-sdk-2.8.4.zip": {
+      "role": "php-sdk",
+      "repo": "https://github.com/php/php-sdk-binary-tools",
+      "ref": "refs/tags/php-sdk-2.8.4",
+      "commit": "cfe7325dfdc9f20e54e85fb8929e32625d5f624e"
+    },
+    "https://github.com/intel/php_pgo_training_scripts/archive/master.zip": {
+      "role": "pgo",
+      "repo": "https://github.com/intel/php_pgo_training_scripts",
+      "ref": "refs/heads/master",
+      "commit": "b3574b1043ae0418490f3ce6c3359ecec0dde5aa",
+      "seed": "package_cache/php_pgo_training_scripts_01org.zip",
+      "prefix": "php_pgo_training_scripts-master/"
+    }
+  },
+  "files": {
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-8.1-vs16-x64-staging.txt": {
+      "role": "deps-series",
+      "sha256": "6cdd2596ceee493ab16f24038d58e4aa9e42d8420fd641c5cbd022c70f988089",
+      "size": 1093,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/apache-2.4.43-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "7f13b8243f9a8555af1c80b9e669f21d5684cd1041f5ac2a7ce50f7575a88e9c",
+      "size": 1683925,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/c-client-2007f-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "f8b21585b46d729c8abd9e1fd46a69138e2adf7301cf82841b46858a8b04ac9d",
+      "size": 662992,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/fbclient-3.0.6-nocrt-x64.zip": {
+      "role": "deps",
+      "sha256": "641d8beee23283d4ec356a4e57b5ac40343bd9ab35d8296faaee7c4dfacbb36f",
+      "size": 54544,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/freetype-2.9.1-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "2bf0aaf989b1fe499aa2e5025f83b5949aa2768ce1160c1974bb78e0300416b2",
+      "size": 2994492,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/glib-2.53.3-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "d0e47c0bfb6457b11afadd65db2eff7d01d5abcec4a8072eb9f00c15d86e9756",
+      "size": 7651881,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/ICU-70.1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "75b0b711d25c2fd84fb12f08597ba509d1df00fe67a936a39adf9862ed70c02e",
+      "size": 25105381,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libargon2-20190702-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "62258b350b37c0023fbecba33bc66a799617858714319bd15648c9d698546f0a",
+      "size": 190058,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libavif-0.9.0-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "7e1becb71baad8a39d8059cd1c056396c84d7b5700eec34c9b15710edbf0341a",
+      "size": 5389342,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libbzip2-1.0.8-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "ee2b47dbc7333205edb2fdec787e9fa06b95a080b634f4b78c53b21379bdcf72",
+      "size": 123371,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libcurl-8.15.0.pl1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "1f9a227d2ff9042363c5165f83314a237f7a7206d6ecfe1378050f603c9428dd",
+      "size": 4507482,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libenchant2-2.2.8-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "d1aa8207131cb4ab750c7dad4083903298d2fb903172f82b8a1fb795de8b15c8",
+      "size": 1069965,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libffi-3.3-4-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "5806fa69f9c150b1ecaf8abf3656452f20cdb6f16c36eb65871e1792e6cee26d",
+      "size": 87626,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libiconv-1.17-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "f5d9522dd5876300d79ddce445c51f2de6f62648d91841df94a2f6a0cc63830d",
+      "size": 1828539,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libintl-0.18.3-8-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "8180dab050fc481d534385aaefc93f9e5cb25d688a326693bab6739163b4eb60",
+      "size": 716986,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libjpeg-turbo-2.1.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "b935d42b7536bb8a0f45531896d62ec3d6725d3ebd81aa7760b89fe352237d64",
+      "size": 295908,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/liblmdb-0.9.22-6-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "c671d0ec857eb0848f67f12374cdaf0b76739672704080fe560ab0af8835153e",
+      "size": 401876,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/liblzma-5.2.5-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "5c7e8a344871a1e6c7abe2a35eb533fc4b3c733c80b6189909f49c79f8918699",
+      "size": 664067,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libonig-6.9.7.1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "4eb791dc35fee44a7e2932150b8bad30a0439a4d1db30ddcbe9f36b19698a3e1",
+      "size": 581151,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libpng-1.6.34-8-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "5edfaff761db8b332f3d6dea542372239d01102522a04c468b2724d80de5a22f",
+      "size": 2046042,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libpq-14.18-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "4568bd83fcfdcb22a8a9648fd3d7134afafe6b31c79e07fd0e711d7949340c82",
+      "size": 1083492,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libqdbm-1.8.78-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "6895706bf83e80d2ceeecd6375be0b03d27c1c49e75bae8ca491b6c96beca598",
+      "size": 1369531,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libsasl-2.1.27-2-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "cb85108f882ffa8460bf6cc1f621505b04487a8936dcbfd0b144b0a379ab0b35",
+      "size": 538932,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libsodium-1.0.18-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "2f01641b65cbd678197a7af6cc802f753b7bdc498500477c4bf689412aad02ec",
+      "size": 1079391,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libssh2-1.10.0-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "f2901560893fa1e1a1b6fe64e75691d54bab47d673ca5720106214f4afeec122",
+      "size": 560744,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libtidy-5.6.0-2-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "ce9163124555fe153c2bca8d8c5dd5e2f31ba05d5c23796434a152b6c3be0414",
+      "size": 3163904,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libwebp-1.3.2-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "2a111aef0c434dcfcd5cb815c80a7da7517cc3cddd8855e8818fc5b88e47c0d3",
+      "size": 1328293,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libxml2-2.9.14-4-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "68e7bfa30a05570a4cbe2652a4b667bed1b6030852c52faeeafa8fd9c2f730a2",
+      "size": 7289500,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libxpm-3.5.12pl1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "42de944c81cdf7af4e81c4b1e4eb757f64fcc48b9ea082c41145db18f5714884",
+      "size": 975105,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libxslt-1.1.34-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "486c647715218805a9e29b4bb19a794c9f8062edd9eccaa13976de0e2db677dc",
+      "size": 586826,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libzip-1.7.1-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "e91f3a2060a376256700515dad63ff52984e8910b903fc79171ef0fac937ad80",
+      "size": 344607,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/mpir-3.0.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "6ef0ea515f77fdfe4a8a40b52bffc2ce1db7f45d360221ca066431cc196f33d7",
+      "size": 979713,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/net-snmp-5.7.3-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "eb07ceec10a5fc4cbfa3a865d929b863cc6d8ca5d2a7bffa414d684e056616f0",
+      "size": 1755282,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/nghttp2-1.57.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "02949edb70e68157b3b67e36c088e12454648f597b2d75b509c54eca6ca0dfe0",
+      "size": 398545,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/openldap-2.4.47-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "cfae1cdf353c633b6722cd472c8cffb9d6f072d34309923a163ed04f3c5c4146",
+      "size": 1412535,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/openssl-1.1.1w.pl1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "9d3da60eb4c48aebf3798d01794e87d8e94b1fadf6c9c67686d058c77cdc8140",
+      "size": 6720356,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/sqlite3-3.36.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "3f8ef1173a3a01563b7dbb0d56fa7b6d6404e3f7c172dc78f4a1dab0824d72dc",
+      "size": 5799303,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/wineditline-2.205-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "a9a0b4225e765afc2b03e35a153da7087fdde0052bc1064741aa283a9a7b0a43",
+      "size": 202219,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/zlib-1.2.12-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "4d21150b7a614cb9e5f2e70849f9bfc72290e7384794f703b2576ac6eb4d37b8",
+      "size": 188358,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-8.1-vs16-x86-staging.txt": {
+      "role": "deps-series",
+      "sha256": "288323a4593734e855b3af1f3d3aa0d54002403a3c62de681be3eb69a46a1a69",
+      "size": 1095,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/apache-2.4.43-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "94d50644cf12816709c53c04ee95c0e88a6f8fd5f1c1e5623b3831f6dde9e3db",
+      "size": 1568667,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/c-client-2007f-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "8ce3e443b837e166d638fa80faa019c813db96bc502bb16a0563aa3ca712bb25",
+      "size": 566554,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/fbclient-3.0.6-nocrt-x86.zip": {
+      "role": "deps",
+      "sha256": "755870a1c0c2fcfbe551d88d0195761892ebe385cca3c453c02962307001fab5",
+      "size": 55144,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/freetype-2.9.1-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "9d58d22e4043a9314cb2e62cd65c41f9ab310e48e44425ad83fed507f917aa01",
+      "size": 2820797,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/glib-2.53.3-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "411faa03d080a96108b75bc0b05ad40cb5d6f9edda9e2a4107f9c15e5178e2fc",
+      "size": 7373329,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/ICU-70.1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "adec01d6cb58de9019a51e3c57e072bdc8290c2cad3fb87d2ab5465d807aa0b2",
+      "size": 24284514,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libargon2-20190702-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "7606a7265c4e14939a3e1b0d90af255e33c13cd246ed0ff3fc72cabf4d354a7c",
+      "size": 188090,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libavif-0.9.0-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "5c52848e5b1b3217bdd5a8cb77bfd98dfa796c2b8c343e62fd849c1abf48481d",
+      "size": 3242859,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libbzip2-1.0.8-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "650070aea1dd58a56e2966d322f88523038c60b8d2d75ebc20d2d3166b0cbffc",
+      "size": 110496,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libcurl-8.15.0.pl1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "79c9240278a3168f1a4fe088888f600ff96eb5fa9bd5caeb1bcbcafb38e9213c",
+      "size": 4310967,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libenchant2-2.2.8-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "add15bf43f2b06fd3553ee2c449856ab493a326ddfead02adfe3a170898dca59",
+      "size": 1010355,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libffi-3.3-4-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "b83c161a85e7573e0012e5a7b2dd8075d02f353da87ef9216046d77054f61f0e",
+      "size": 93128,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libiconv-1.17-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "0ecc391652300e72ee0e9aa506a0d90332297bce71b0f94521437d70a10fb609",
+      "size": 1826787,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libintl-0.18.3-8-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "0b69093003c15595468ccbbe7e5e6601cade8bd8395be8653b5d2af70356e640",
+      "size": 702991,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libjpeg-turbo-2.1.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "bb8eeb036842a0dd4beee19dafb0b15341adf184380804610ed1cd9898ffe545",
+      "size": 244432,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/liblmdb-0.9.22-6-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "6c3cdca7c4aef4416aa1f3594e9c20e13a0263c4e1d5b1b8e17a466743e53c73",
+      "size": 356154,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/liblzma-5.2.5-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "62832106b7974b0f3092158d0d3959799fc45921f8726850d28b3fe0959b7553",
+      "size": 627607,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libonig-6.9.7.1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "8c9e5df0e005968a1f078a3c8219a63b05de43bb256c8b047698c1c65a3c3ea6",
+      "size": 512310,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libpng-1.6.34-8-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "a09f89141426bffeafe218d9110e05180c96fe30eafe2c320a05d7573534b2e7",
+      "size": 2033424,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libpq-14.18-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "0c03b508eea7f6aad79be68c0a2220fec91734c736558663e27c75ff8b501aab",
+      "size": 1048959,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libqdbm-1.8.78-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "cb0762f5e24fc6520edccf17adb39cc502caa3c9db39f5f456aaa5a49f1ea567",
+      "size": 1225173,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libsasl-2.1.27-2-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "2a3d7f7935f02df072f91a2013f4cfde966169bc50fcc887394d8017fa92c273",
+      "size": 485234,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libsodium-1.0.18-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "8aa4495baab88a11f9409fbbc9e8dfe7fe42803ddd560f5e9a59d495188330a0",
+      "size": 1108588,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libssh2-1.10.0-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "3676353ffdc8e8df7d8a7be15bd56cb548589ee207aed93c805d110e3fd4aeaf",
+      "size": 552466,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libtidy-5.6.0-2-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "e6f8c42872b262c9e97efa0d8c13f172ec90eb892ba32b7e07a5fb4be77effe6",
+      "size": 3068541,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libwebp-1.3.2-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "df7a3e3c87fb8aa9f140cd2840559a5dae9856ebc7a41163bf9d3702ed42d991",
+      "size": 1009148,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libxml2-2.9.14-4-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "955addd156e1b60e8dff9b91ac581a1caf57b4195eb0c19758d771475f04ecec",
+      "size": 6178761,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libxpm-3.5.12pl1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "d0bf09f1c4e3de041c863866c09d0f9eebbf08edb7bed26c0c712aeb5884323e",
+      "size": 951925,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libxslt-1.1.34-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "af2ac8bfc9b5516e8933c38859082fb50bc46e33e14f5e4e9f6f9887aa6ae6ea",
+      "size": 450559,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libzip-1.7.1-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "3a397787c7b2115ee55b3a78479d0bec4be31f69ad3eae06dbbfd486f550d085",
+      "size": 320151,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/mpir-3.0.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "992726e982a8ab323582b4c1736270fc01e004800de94639f71d2521a6764315",
+      "size": 918386,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/net-snmp-5.7.3-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "bd964133b796fa0f9d057366a17da3470cda73bee0fd75d014188723a1c3668b",
+      "size": 1568329,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/nghttp2-1.57.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "83d210a94235532f5971d19381ac217882684f964adbbe041a4c46bf88cc2894",
+      "size": 398129,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/openldap-2.4.47-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "3954eb66a8b99ad438463761ab36c44738dddc1d44d6182f861a955be1bed19a",
+      "size": 1297842,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/openssl-1.1.1w.pl1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "ac103d2e1b15d8b05b3b45b6be0dea3cace2f55025d532547b98580c808270f9",
+      "size": 6129230,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/sqlite3-3.36.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "dacac2dc4532ef91574cbe58f33208ca21f4822ed40f2a6c7cbae89b6b1534be",
+      "size": 5371026,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/wineditline-2.205-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "b7d0fd4c1ef0d4a5fd324a5c462627eb9bccf2167499ad15945519c73a1d400e",
+      "size": 191861,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/zlib-1.2.12-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "ce032782a9e92b7b57c2654f24b4a6ce13cf653da143be9735a88813f14eaa90",
+      "size": 176665,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-8.0-vs16-x64-staging.txt": {
+      "role": "deps-series",
+      "sha256": "c75e6a35feb79405b40bcc4731974cc2aa9361d726e0aa39d3d61c19f6c6d4a9",
+      "size": 1045,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/ICU-68.2-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "aa079f1ace8f303647e4d3f1ef0f9381cc33f1de37cc1b3eaff248706b81c66a",
+      "size": 23668940,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libcurl-7.76.1-3-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "9981dc18c98c2de15813e1cba72af057408a3062e0445d57d2639a324e046209",
+      "size": 3069504,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libjpeg-9c-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "269fea134a012e61a3b7cad13f3f67436be406e9e8a1550bd9e85482f9ddc3ee",
+      "size": 194601,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libpq-11.4-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "40bd730387db2eb7b00cea4442437a965c77eed9479344a48eb0fc74ae141e49",
+      "size": 1768973,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libssh2-1.9.0-1-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "24d9e8a9a1ab4e88e25fd0126311e525fddb8d85b292a34c5e453aa66f82648a",
+      "size": 1167362,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libwebp-1.1.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "d63499e38d64e4bb76d2238b84c4c5db06b3a148167e413ec12d9221b53f9e13",
+      "size": 2410512,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libxml2-2.9.10-2-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "5101b4b7a69c15a2b0e371a2f6eb8750c25debf284b603e88948016ebbab6b77",
+      "size": 11314670,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/libxpm-3.5.12-8-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "6b2a54714e515c15c74d52f4a9d5e5a580e673eae1e86873316337ec46eb383b",
+      "size": 960937,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/nghttp2-1.40.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "2fe632212af331d2082baa2b993fcaf5b3ad4569bb5fb3d4704ea9690b1923aa",
+      "size": 619088,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/openssl-1.1.1t-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "1305d7279634b4eaab2f22c4ae0d6da1bb362618229a1b95f1bd688fb3570dbf",
+      "size": 6687555,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x64/sqlite3-3.33.0-vs16-x64.zip": {
+      "role": "deps",
+      "sha256": "a03e5eda9bb4993b0f77e8bf53be8f0bc6323ec9e3c5be50c3a150f7ef7fdf98",
+      "size": 5952269,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-8.0-vs16-x86-staging.txt": {
+      "role": "deps-series",
+      "sha256": "72e18f149daaafe6e1efd70d86037e49d4400199aa66b8be8d7e04c28cdd683d",
+      "size": 1047,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/ICU-68.2-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "b6cf54814bd0a4ba0d07635052447098d1591bcde03b21fb69b0658ddfd4c099",
+      "size": 22921549,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libcurl-7.76.1-3-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "cb78a2306e8311bac268394934fc4508983b020c459d182b64ee97c8cdf6264d",
+      "size": 2950031,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libjpeg-9c-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "1a1b62887ae5dd6d9225d2c3dd4cb85dff8ab00f802c42f2796656484a01ef8f",
+      "size": 155433,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libpq-11.4-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "d5f4d0dad9d8d18865a86afcc3ff0e2282556330fee99593f17daf0b2c0cbf5a",
+      "size": 1726300,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libssh2-1.9.0-1-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "3c7704c9cef3dd44b5b3c1edbfe1691b32706dbbd55fe30878ccb63ef2aed9dd",
+      "size": 1112487,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libwebp-1.1.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "1bbef9e88ac360b3f36f53ed98552a4a722b98bdf1f89531a5d823e4d1a420c1",
+      "size": 2047211,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libxml2-2.9.10-2-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "31168603e7b06d15b139b239b23d6fb992ecce613e7ebc378c852f811d667b21",
+      "size": 10012392,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/libxpm-3.5.12-8-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "91b03eb3d3ae3be9f95acddba9dd65823621f77c49c209d25b4441c4669040a4",
+      "size": 938301,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/nghttp2-1.40.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "74f891d13d193616849d14072d6b1e1cf73afbb04e2dce88a059a2b37f592791",
+      "size": 619043,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/openssl-1.1.1t-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "57f4481a69202689c219716ccbdb1b345478234455db27aedf592075ea231bb4",
+      "size": 6072484,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vs16/x86/sqlite3-3.33.0-vs16-x86.zip": {
+      "role": "deps",
+      "sha256": "fd583ec385be83c82e4318678b67b8cee2282af6b7157e3b35fa6be0537b6bfc",
+      "size": 5703367,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-7.4-vc15-x64-staging.txt": {
+      "role": "deps-series",
+      "sha256": "d43d361b51368a3d0dd3cea8109eb5f6ffe5550b6db4ca6dbc0fad60a47acd1a",
+      "size": 1018,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/apache-2.4.39-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "7f7487d359e32034f8ea6567a6f36f5195e70cf1d1e97502a2561744fcce0da8",
+      "size": 1672681,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/c-client-2007f-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "03584a0a6e74210435399f480cba433b5463a68a24dd7e53f9f80d17ea257c45",
+      "size": 649097,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/fbclient-3.0-nocrt-x64.zip": {
+      "role": "deps",
+      "sha256": "a6985eca19902ad218d3866a90ef8add66afbd1fd6f818d207427bc4ed750b5f",
+      "size": 57701,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/freetype-2.9.1-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "aabff841e603cf15d87963814f074163a5de0ec523312646f839bf9e022792b5",
+      "size": 3678412,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/glib-2.53.3-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "cc4eb3e58fa844aba0cdfcc19fdbea2c2711f719cad06f100950f2f3fc969e8f",
+      "size": 7176432,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/ICU-66.1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "0f7119856eaa44e682390fdb6b56bd814c1f3e03ab8b684ad9bcc1fe604583a8",
+      "size": 21993531,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libargon2-20190702-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "973632d183508a8e852dbe2c6710ced1e53bdb3dc8bcb9117fc481f800c862bf",
+      "size": 166213,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libbzip2-1.0.8-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "a767ed98e8c0caccce14cf5c4b063380011b0990c037e2d45715bc3892ea44fe",
+      "size": 110042,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libcurl-7.70.0-6-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "d8f6ef2eb3a22ca3ab694012d775c03362c6d7a358dfd112bcaab9ac3a8499b3",
+      "size": 2877071,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libenchant-1.6.1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "a79888f0c16ea24c35ae77d101daabc8171c2f9d0d17cd73ba79fe52b9e2a68e",
+      "size": 1231234,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libffi-3.2.1-4-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "11461f14fbadd8095d5462fefb63c102e92cce63a19d5aabfa6982b9af7226b9",
+      "size": 101445,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libiconv-1.16-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "39a09b3cbbd4da87616ab1f58985f76291072e1393763061abe6de9a8f5b07cd",
+      "size": 3385875,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libintl-0.18.3-3-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "d72b5316cd4883c71f0c5987dad7cf243d9e744c0f7ef3b2c009168808da691f",
+      "size": 1091986,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libjpeg-9c-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "781fbee09f55c5d7da9515368d81d5288ad1d3999e2fcbd832183a520365fcb8",
+      "size": 203028,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/liblmdb-0.9.22-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "0dcf294f1f395f9c43c3cb913a5409d2ef874ba2189b4130dc4f9f6615ed1275",
+      "size": 522116,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libonig-6.9.5-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "610562458a994af0dae1010ea8ae161ed44af99a6e5e3928c600d524373ae031",
+      "size": 565263,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libpng-1.6.34-3-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "ef8dc6316b0638f8518ccb67e4d075df019db3906d7e14fa8d9d71f96175076f",
+      "size": 2114355,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libpq-11.4-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "614373e1cca66896ade3f8a64d04905818d1013fcbc67ca674413fe7aa68fdc6",
+      "size": 1772237,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libqdbm-1.8.78-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "ed2b92cbee59125aae72d8362e57b9910e2253cbf6b451f3f3b4d3802f53c380",
+      "size": 1272249,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libsasl-2.1.27-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "145bba48a0c816caa457355e1d6cad94d8439c7bbfeee27065399739ff4bd162",
+      "size": 2088105,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libsodium-1.0.17-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "4462619e029f265201c8d19df6a0d7655681231c84d351b8307a86a72e81982c",
+      "size": 1120421,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libssh2-1.9.0-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "ee482e195135764dc2f3ca6b6c71ee155c8e2f9ca0003daf68974f1582613c08",
+      "size": 1223173,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libtidy-5.6.0-2-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "79d6bc448493d688c203985a11ffa776946969c56d632b91b55be2c7944359a3",
+      "size": 2986883,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libwebp-1.1.0-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "d76b4ce0fc0c9e61352c563aefd3672d46d1cbe073415ab212b0b8bc7f5d95d8",
+      "size": 2447287,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libxml2-2.9.10-2-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "03cf8922d0c9895bbf979b8cda329ab6f4a978f2e1fbc24b513742aaeb30798d",
+      "size": 10835285,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libxpm-3.5.12-3-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "b7e7a7d438e4f38fe254ff9de7584c157b29919b106cb201b0df6ca983f6dd28",
+      "size": 934635,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libxslt-1.1.32-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "3a57af40997d09621d217a6fb5dabd2b3d96e59205466f93978880ee262fffb9",
+      "size": 612307,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/libzip-1.7.1-1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "93b8c33e7462cec9fce6032be65558dbecc950959bc659f8ad0c7356143a7c8e",
+      "size": 343243,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/mpir-3.0.0-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "272d7e09eab4719a72874a93b2df7cafaaaac78df9b19084a90f736e21506deb",
+      "size": 1044600,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/net-snmp-5.7.3-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "b12d4661749fa8811c3a91a131e1062db86c522ee7ad17b0b43c93b48ef103dc",
+      "size": 1650116,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/nghttp2-1.40.0-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "ad7048d8ea8cb066eda57849b32e9f0f0474a02abccba8a712a23262f2d6fa1d",
+      "size": 611897,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/openldap-2.4.47-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "686605dbb3963aeb5d1989b27626bd807e66465d7c0512fed312f34365b81b37",
+      "size": 1930276,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/openssl-1.1.1s-74-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "0c6ce609b06c9ef96d36495e0482482fcc35b4c9424f693d9460060e7c76de82",
+      "size": 6678275,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/sqlite3-3.31.1-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "a5fa8b9394591d9b73a829d73c5cf8fe80614856d90fcbb8f42fa3e79d25d20a",
+      "size": 5714614,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/wineditline-2.205-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "7ce5cc69005f41f975b31474717d6516a6a3be015d3c641543a94beaff259bcf",
+      "size": 212349,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x64/zlib-1.2.12-vc15-x64.zip": {
+      "role": "deps",
+      "sha256": "18c570e087b18d80f7ca5b6cc7acdbe21918517a660e7d3e27b9a611bd17b1ed",
+      "size": 188376,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/series/packages-7.4-vc15-x86-staging.txt": {
+      "role": "deps-series",
+      "sha256": "d16ddb5062a6469c1e3a7df81b77fbcefae8e5b6cbe7b5e7eebc052ad2b80c54",
+      "size": 1018,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/apache-2.4.39-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "dcd3978b95b29059c9ec092db95b381692453c4af85a13b8be1438f9cca250e8",
+      "size": 1559798,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/c-client-2007f-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "280d04e0f33d4399fe5364ae8698ff5cf087bf89b1098815d130529cae464d7d",
+      "size": 554211,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/fbclient-3.0-nocrt-x86.zip": {
+      "role": "deps",
+      "sha256": "130f8b2f0ebac0047e20dc27a79580410194ba166a8457f899001bae7c10df6e",
+      "size": 58290,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/freetype-2.9.1-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "f7256e5c1e1eadb1eef45f8592793a179a7a77afe9f53f33b43605217e92c013",
+      "size": 3646770,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/glib-2.53.3-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "b3d75cbe7825df81efbd675f7a5c04da86783d3ff5a48aa496441a28017753bb",
+      "size": 6915332,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/ICU-66.1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "db8971d9db9449705f8ef416b1af762afdb73be1f95418eea5d8148f5d9fe431",
+      "size": 21495943,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libargon2-20190702-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "b5d875b438de18c7929400ab1d7fe34d1cea3cddcc1cb1b2aef232ca3eb54072",
+      "size": 162070,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libbzip2-1.0.8-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "0261a9f9c5b4a4e867640f2e2e22f12f5e36e172ff489ed10943f6efb253ba0a",
+      "size": 97506,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libcurl-7.70.0-6-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "badb588eef895b5f4e9989fd0a36612d7b16b8fb77870ca94b50ac66a86d6850",
+      "size": 2760002,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libenchant-1.6.1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "7dcb5e725f5764bc357a033b354a59a2749e24df1d264c677e658abcef9724d4",
+      "size": 1126824,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libffi-3.2.1-4-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "38bace093da830a778a1e83b618e21fa52c51a02bf84305915b0c60df398caae",
+      "size": 82718,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libiconv-1.16-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "5fc189a5083b292943ffed362eb8f3bf5a4b3899970fa84baee0990da4d434ee",
+      "size": 3409401,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libintl-0.18.3-3-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "066526ac0dd8a7d3efb0892c350e6bde292761e1cc0b0ddacceb2f1c49328deb",
+      "size": 1110474,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libjpeg-9c-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "8f8ce0e5a1c3a9ed40fa32b3f8b623595d982f045e9b8ee8903b131fb32684fb",
+      "size": 161437,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/liblmdb-0.9.22-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "11ddecc301927a56dfdcf8afa7b23f11d9e40efaa73c5feb3fccdd30dedb4b90",
+      "size": 473526,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libonig-6.9.5-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "2cf93d66f3ddaf5f6c1d048c1def86afc4e5501d047970c6f29e2ded3777f255",
+      "size": 498264,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libpng-1.6.34-3-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "f7ed00a17dacfc85d3a42ae050c41880ff9d956636e928c9eeb28370b1360f58",
+      "size": 2096833,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libpq-11.4-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "1a51751a998c74953589202168862a8cfe23cba2d1c9bbb1e37c8e554ce87d62",
+      "size": 1727669,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libqdbm-1.8.78-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "52362db4da937c1d47c19d859cb06784d856ea0b283b28efe05f82eedd267833",
+      "size": 1145857,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libsasl-2.1.27-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "40c1063be75af0457d5045fb7c37059dacd6dd5d04cda4e8092708767b01f1bf",
+      "size": 1998757,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libsodium-1.0.17-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "1fc1485ffde778825ce0d8507874fc818d9e38b215d4169b709caa2909aa854d",
+      "size": 1135761,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libssh2-1.9.0-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "ea210a3d3001ed06d661d91652a23e9ff59046e13a5c7427492820d46991c66f",
+      "size": 1162190,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libtidy-5.6.0-2-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "3642e1a675f3e17f47a72dc4ffdd122418831e3273644b5f593ea840e48db210",
+      "size": 2888421,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libwebp-1.1.0-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "664bcb6325bfccf52fe8d225ba04ec12f97f66a9130475caabf3bcc7dbcb1e20",
+      "size": 2079391,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libxml2-2.9.10-2-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "2acb82609f3a2ef34e79379799d9a0bea9453a6ab8dde9e6ef89bf15271a586d",
+      "size": 9667015,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libxpm-3.5.12-3-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "2ce8f21bed994ef824bc50f3c3fcdab8c517e65dd12c97c9451cf477a89a120f",
+      "size": 912070,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libxslt-1.1.32-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "da4918d4d526624acdb769bdb73bb90ee0f6600d3368e5acc6bc39ee01f2a30d",
+      "size": 458233,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/libzip-1.7.1-1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "f4d780f1962409c890707b3b8c9a8cadf062e8665cd068ddef3167fa486a08df",
+      "size": 314259,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/mpir-3.0.0-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "3bd484ee74bd076382acb375a071df269fafc1d9ff4e7315695a0f3bf64dc7ba",
+      "size": 966356,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/net-snmp-5.7.3-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "430a4e01dd52a24c58bd58e49d08f050424754ef0e0b6f7303c82bd95d338d84",
+      "size": 1489706,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/nghttp2-1.40.0-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "12616150e55dcec2a703e3dcb17dc76edefb229364f46dc2adc2f0cb86fbc1cc",
+      "size": 610196,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/openldap-2.4.47-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "4b7386a09d964cf8287e604f8c6cd065b51e52314e05e5e37e83c39f662924fd",
+      "size": 1784792,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/openssl-1.1.1s-74-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "51b7ca02591f52b84e7684ab73eb38aa8c64d2c72216ef5c222edf8a80ac6d77",
+      "size": 6063060,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/sqlite3-3.31.1-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "e14a07cb62f0c4df0ed1d4daba658464c567b4ea97ce2ebe9d2f0fcfc49dadc8",
+      "size": 5513942,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/wineditline-2.205-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "3967bffaa5b2e36591c2a3d2571c004f17b10bf937c3b72b961031840bd4bbc5",
+      "size": 198850,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://downloads.php.net/~windows/php-sdk/deps/vc15/x86/zlib-1.2.12-vc15-x86.zip": {
+      "role": "deps",
+      "sha256": "d06bdb7e9ee3cfbc824d1152e8729a0ef3dc2a3d1851cdb1837b2a6446c64cfe",
+      "size": 176691,
+      "verified_by": "none published: compare with `verify` from a second network"
+    },
+    "https://download.oracle.com/otn_software/nt/instantclient/instantclient-sdk-windows.zip": {
+      "role": "oracle-sdk",
+      "fetch": "https://download.oracle.com/otn_software/nt/instantclient/2326400/instantclient-sdk-windows.x64-23.26.4.0.0.zip",
+      "sha256": "1d0d3291174e7b77007211c984b2f5a45e04833b0ce34b0351e607ce77932484",
+      "size": 1525846,
+      "verified_by": "matches the SHA-256 published on https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html"
+    },
+    "https://download.oracle.com/otn_software/nt/instantclient/instantclient-sdk-nt.zip": {
+      "role": "oracle-sdk",
+      "fetch": "https://download.oracle.com/otn_software/nt/instantclient/2123000/instantclient-sdk-nt-21.23.0.0.0dbru.zip",
+      "sha256": "e922a37d331140741adf346db2f9df314796b956ca49288afa44ebd852f231dc",
+      "size": 1291000,
+      "verified_by": "matches the SHA-256 published on https://www.oracle.com/database/technologies/instant-client/microsoft-windows-32-downloads.html"
+    },
+    "https://archive.mariadb.org/mariadb-10.11.19/winx64-packages/mariadb-10.11.19-winx64.zip": {
+      "role": "pgo",
+      "seed": "package_cache/mariadb.zip",
+      "sha256": "398ea30e5036010bbebe01d2b1804280424dcc2626e36d8e95155c04d25a0490",
+      "size": 93557290,
+      "verified_by": "matches sha256sums.txt and the downloads.mariadb.org API"
+    },
+    "https://nginx.org/download/nginx-1.31.3.zip": {
+      "role": "pgo",
+      "seed": "package_cache/nginx.zip",
+      "sha256": "934a8fedd91646a4d7c51079ac9b71397d1caf7a6aeb81ccfd361250c04ace2c",
+      "size": 2786061,
+      "verified_by": "OpenPGP signature by `D6786CE303D9A9022998DC6CC8464D549AF75C0A`: compare with https://nginx.org/en/pgp_keys.html"
+    },
+    "https://getcomposer.org/download/2.10.3/composer.phar": {
+      "role": "pgo",
+      "seed": "tools/composer.phar",
+      "sha256": "7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6",
+      "size": 3642137,
+      "verified_by": "matches getcomposer.org .sha256sum and the GitHub release asset"
+    }
+  }
+}
