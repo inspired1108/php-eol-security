@@ -1,0 +1,63 @@
+name: Lock inputs
+run-name: Propose inputs.lock.json
+
+# Downloads every external input of the build, records its SHA-256 and checks it
+# against the publisher's own digest or signature where one exists. Nothing is
+# committed: review the proposal in the run summary, cross-check it from another
+# network (python .github/scripts/locked_inputs.py --lock <proposal> verify),
+# then commit it as inputs.lock.json.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Same builder commit as build.yml
+  BUILDER_SHA: 5f63433eb2bda2ca8d0d970fe487be84f7ab195c
+
+jobs:
+  lock:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Checkout php-windows-builder
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          repository: php/php-windows-builder
+          ref: ${{ env.BUILDER_SHA }}
+          path: builder
+          persist-credentials: false
+
+      - name: Same builder as build.yml
+        run: |
+          grep -qx "  BUILDER_SHA: ${BUILDER_SHA}" .github/workflows/build.yml || { echo "::error::BUILDER_SHA differs from build.yml"; exit 1; }
+
+      - name: Propose lock
+        run: |
+          python3 -I .github/scripts/locked_inputs.py lock \
+            --vs-json builder/php/BuildPhp/config/vs.json \
+            --out "$RUNNER_TEMP/inputs.lock.json" --report "$RUNNER_TEMP/report.md"
+
+      - name: Summary
+        if: always()
+        run: |
+          cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY" || true
+          {
+            echo '### Changes to inputs.lock.json'
+            echo '```diff'
+            diff -u inputs.lock.json "$RUNNER_TEMP/inputs.lock.json" || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload proposal
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: inputs.lock.json
+          path: ${{ runner.temp }}/inputs.lock.json

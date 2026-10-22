@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "about": "Every external input of the Windows build, pinned by SHA-256 (files) or commit (git). The build downloads and checks them before compiling and refuses anything not listed here. Entries without a sha256 are filled by the 'Lock inputs' workflow (.github/workflows/lock-inputs.yml), reviewed, then committed. Keys are the URLs the builder requests; 'fetch' is the immutable URL actually downloaded when the requested one is a moving 'latest' link.",
+  "git": {
+    "https://github.com/php/php-sdk-binary-tools/archive/php-sdk-2.8.4.zip": {
+      "role": "php-sdk",
+      "repo": "https://github.com/php/php-sdk-binary-tools",
+      "ref": "refs/tags/php-sdk-2.8.4",
+      "commit": "cfe7325dfdc9f20e54e85fb8929e32625d5f624e"
+    },
+    "https://github.com/intel/php_pgo_training_scripts/archive/master.zip": {
+      "role": "pgo",
+      "repo": "https://github.com/intel/php_pgo_training_scripts",
+      "ref": "refs/heads/master",
+      "commit": "b3574b1043ae0418490f3ce6c3359ecec0dde5aa",
+      "seed": "package_cache/php_pgo_training_scripts_01org.zip",
+      "prefix": "php_pgo_training_scripts-master/"
+    }
+  },
+  "files": {
+    "https://download.oracle.com/otn_software/nt/instantclient/instantclient-sdk-windows.zip": {
+      "role": "oracle-sdk",
+      "fetch": "https://download.oracle.com/otn_software/nt/instantclient/2326400/instantclient-sdk-windows.x64-23.26.4.0.0.zip",
+      "sha256": "1d0d3291174e7b77007211c984b2f5a45e04833b0ce34b0351e607ce77932484",
+      "size": 1525846,
+      "verified_by": "SHA-256 published by Oracle on https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html"
+    },
+    "https://download.oracle.com/otn_software/nt/instantclient/instantclient-sdk-nt.zip": {
+      "role": "oracle-sdk",
+      "fetch": "https://download.oracle.com/otn_software/nt/instantclient/2123000/instantclient-sdk-nt-21.23.0.0.0dbru.zip",
+      "sha256": "e922a37d331140741adf346db2f9df314796b956ca49288afa44ebd852f231dc",
+      "size": 1291000,
+      "verified_by": "SHA-256 published by Oracle on https://www.oracle.com/database/technologies/instant-client/microsoft-windows-32-downloads.html"
+    },
+    "https://nginx.org/download/nginx-1.31.3.zip": {
+      "role": "pgo",
+      "seed": "package_cache/nginx.zip",
+      "sha256": null
+    },
+    "https://archive.mariadb.org/mariadb-10.11.19/winx64-packages/mariadb-10.11.19-winx64.zip": {
+      "role": "pgo",
+      "seed": "package_cache/mariadb.zip",
+      "sha256": null
+    },
+    "https://getcomposer.org/download/2.10.3/composer.phar": {
+      "role": "pgo",
+      "seed": "tools/composer.phar",
+      "sha256": null
+    }
+  }
+}
