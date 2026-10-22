@@ -2,10 +2,11 @@ name: Lock inputs
 run-name: Propose inputs.lock.json
 
 # Downloads every external input of the build, records its SHA-256 and checks it
-# against the publisher's own digest or signature where one exists. Nothing is
-# committed: review the proposal in the run summary, cross-check it from another
-# network (python .github/scripts/locked_inputs.py --lock <proposal> verify),
-# then commit it as inputs.lock.json.
+# against the publisher's own digest or signature where one exists. The build
+# is not changed: the proposal and its report go to the lock-proposal branch.
+# Review them, cross-check from another network
+# (python .github/scripts/locked_inputs.py --lock <proposal> verify),
+# then commit the proposal as inputs.lock.json.
 
 on:
   workflow_dispatch:
@@ -20,6 +21,9 @@ env:
 jobs:
   lock:
     runs-on: ubuntu-24.04
+    permissions:
+      # Only for the lock-proposal branch, pushed by the last step
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
@@ -61,3 +65,19 @@ jobs:
         with:
           name: inputs.lock.json
           path: ${{ runner.temp }}/inputs.lock.json
+
+      - name: Push proposal to the lock-proposal branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f "$RUNNER_TEMP/inputs.lock.json" ] || exit 0
+          dir="$RUNNER_TEMP/proposal"
+          mkdir "$dir"
+          cp "$RUNNER_TEMP/inputs.lock.json" "$RUNNER_TEMP/report.md" "$dir/"
+          cd "$dir"
+          git init -q -b lock-proposal
+          git add .
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com \
+            commit -q -m "Proposed inputs.lock.json from run $GITHUB_RUN_ID (source $GITHUB_SHA)"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" lock-proposal
