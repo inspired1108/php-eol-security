@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "about": "Every external input of the Windows build, pinned by SHA-256 (files) or commit (git). The build downloads and checks them before compiling and refuses anything not listed here. Entries without a sha256 are filled by the 'Lock inputs' workflow (.github/workflows/lock-inputs.yml), reviewed, then committed. Keys are the URLs the builder requests; 'fetch' is the immutable URL actually downloaded when the requested one is a moving 'latest' link.",
+  "about": "Every external input of the Windows build, pinned by SHA-256 (files) or commit (git). The build downloads and checks them before compiling and refuses anything not listed here. Entries without a sha256 are filled by the 'Lock inputs' workflow (.github/workflows/lock-inputs.yml), reviewed, then committed. Keys are the URLs the builder requests; 'fetch' is the immutable URL actually downloaded when the requested one is a moving 'latest' link. 'signed' lists the Microsoft Visual Studio installers, which change with every VS release: they are accepted only with a valid Authenticode signature by the named signer, checked before they run, and the installer verifies its own payloads.",
   "git": {
     "https://github.com/php/php-sdk-binary-tools/archive/php-sdk-2.8.4.zip": {
       "role": "php-sdk",
@@ -15,6 +15,28 @@
       "commit": "b3574b1043ae0418490f3ce6c3359ecec0dde5aa",
       "seed": "package_cache/php_pgo_training_scripts_01org.zip",
       "prefix": "php_pgo_training_scripts-master/"
+    }
+  },
+  "signed": {
+    "https://aka.ms/vs/17/release/vs_enterprise.exe": {
+      "role": "vs-installer",
+      "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    },
+    "https://aka.ms/vs/17/release/vs_professional.exe": {
+      "role": "vs-installer",
+      "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    },
+    "https://aka.ms/vs/17/release/vs_community.exe": {
+      "role": "vs-installer",
+      "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    },
+    "https://aka.ms/vs/17/release/vs_buildtools.exe": {
+      "role": "vs-installer",
+      "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    },
+    "https://github.com/microsoft/vswhere/releases/latest/download/vswhere.exe": {
+      "role": "vs-installer",
+      "signer": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
     }
   },
   "files": {

@@ -2,7 +2,9 @@
 """Lock, fetch and verify the external inputs of the Windows build.
 
 inputs.lock.json pins every file the build downloads (SHA-256) and every
-repository it takes code from (commit). Subcommands:
+repository it takes code from (commit). The Visual Studio installers, which
+Microsoft replaces with each release, are pinned to their signer instead
+(Authenticode, checked by the Get-File override before they run). Subcommands:
 
   fetch   on the build runner, before the build: download what one branch and
           architecture need, check each file against the lock and fill the store
@@ -192,7 +194,8 @@ def cmd_fetch(args):
     if store.exists():
         remove_tree(store)
     (store / 'files').mkdir(parents=True)
-    index = {'files': {}, 'seeds': [], 'sdk': None}
+    # Signed installers are downloaded when used, then checked for their signature
+    index = {'files': {}, 'seeds': [], 'sdk': None, 'signed': lock.get('signed', {})}
 
     def get(url):
         entry = lock['files'].get(url)
@@ -441,6 +444,8 @@ def cmd_verify(args):
         for url, entry in lock['git'].items():
             fetch_commit(entry['repo'], entry['commit'], Path(tmp) / url.split('/')[4])
             print(f'ok       {entry["commit"]} {entry["repo"]}')
+        for url, entry in lock.get('signed', {}).items():
+            print(f'signed   {url}: checked for a signature by {entry["signer"]} when used, on Windows')
     print(f'{bad} problem(s)')
     sys.exit(1 if bad else 0)
 

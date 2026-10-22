@@ -71,6 +71,11 @@ The build does not trust anything it downloads, and it does not trust mutable ta
   and the PGO training scripts by git commit; the dependency libraries, Oracle SDK,
   nginx, MariaDB and Composer used for PGO training by SHA-256.
   Moving "latest" links are replaced by versioned URLs.
+  The exception is the Visual Studio installer, used when the runner image
+  lacks the branch's toolset (v141 for 7.4). Microsoft replaces it with every
+  release, so it is pinned to its signer instead of a hash: it runs only with a
+  valid Authenticode signature by Microsoft Corporation, and then verifies the
+  components it downloads against Microsoft's signed catalog.
 - Before compiling, [`locked_inputs.py fetch`](.github/scripts/locked_inputs.py)
   downloads what the branch and architecture need and checks every file. A file that
   does not match, or is not listed, stops the build.
