@@ -57,6 +57,14 @@ Function Get-File {
             }
             Write-Host "Signed input $Url (signer $($signature.SignerCertificate.Subject), thumbprint $($signature.SignerCertificate.Thumbprint), sha256 $((Get-FileHash -LiteralPath $temp -Algorithm SHA256).Hash.ToLowerInvariant()))"
             Copy-Item -LiteralPath $temp -Destination $OutFile -Force
+            if ($env:SIGNED_INPUTS_LOG) {
+                [ordered]@{
+                    url = $Url
+                    signer = $signature.SignerCertificate.Subject
+                    thumbprint = $signature.SignerCertificate.Thumbprint
+                    sha256 = (Get-FileHash -LiteralPath $temp -Algorithm SHA256).Hash.ToLowerInvariant()
+                } | ConvertTo-Json -Compress | Add-Content -LiteralPath $env:SIGNED_INPUTS_LOG
+            }
         } finally {
             Remove-Item -LiteralPath $temp -Force -ErrorAction SilentlyContinue
         }

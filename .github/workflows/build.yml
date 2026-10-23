@@ -158,14 +158,35 @@ jobs:
       # then installs it with the Visual Studio installer, accepted only with a
       # valid Microsoft signature (see "signed" in inputs.lock.json). Done before
       # the build, which runs with downloads blocked.
-      - name: Visual Studio toolset
+      #
+      # The runner image and its toolchain are not pinned by this repository: they
+      # are recorded instead (build-environment-*.json, shipped with the release),
+      # so that a build can be matched to a later image or compiler advisory.
+      - name: Visual Studio toolset and build environment
         shell: pwsh
         env:
           BASE_VERSION: ${{ needs.config.outputs.base_version }}
+          SIGNED_INPUTS_LOG: ${{ runner.temp }}/signed-inputs.jsonl
         run: |
           Import-Module "$env:GITHUB_WORKSPACE\builder\php\BuildPhp" -Force
           $vs = Get-VsVersion -PhpVersion $env:BASE_VERSION
           Write-Host "Toolset $($vs.vs) $($vs.toolset)"
+
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $instances = @(& $vswhere -products '*' -format json | ConvertFrom-Json)
+          $signed = @(if (Test-Path $env:SIGNED_INPUTS_LOG) { Get-Content $env:SIGNED_INPUTS_LOG | ForEach-Object { $_ | ConvertFrom-Json } })
+          $record = [ordered]@{
+            variant = '${{ matrix.arch }}-${{ matrix.ts }}'
+            runner_image = "$env:ImageOS $env:ImageVersion"
+            windows = (Get-CimInstance Win32_OperatingSystem | ForEach-Object { "$($_.Caption) $($_.Version)" })
+            visual_studio = @($instances | ForEach-Object { "$($_.displayName) $($_.catalog.productDisplayVersion)" })
+            msvc_toolset = "$($vs.vs) $($vs.toolset)"
+            signed_installers = $signed
+            run = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
+          }
+          $dir = New-Item -ItemType Directory -Force -Path "$env:SRC_DIR/artifacts"
+          $record | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $dir 'build-environment-${{ matrix.arch }}-${{ matrix.ts }}.json')
+          $record | ConvertTo-Json -Depth 4
 
       - name: Extra configure options
         if: needs.config.outputs.extra_configure != '[]'
@@ -323,11 +344,25 @@ jobs:
           sha256sum *.zip | tee SHA256SUMS
           cat SHA256SUMS >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Build environment
+        working-directory: dist
+        run: |
+          jq -s 'sort_by(.variant)' build-environment-*.json > BUILD-ENVIRONMENT.json
+          {
+            echo '### Build environment'
+            echo
+            echo '| Variant | Runner image | Windows | Visual Studio | MSVC toolset | Signed installers |'
+            echo '|---|---|---|---|---|---|'
+            jq -r '.[] | "| \(.variant) | \(.runner_image) | \(.windows) | \(.visual_studio | join("<br>")) | \(.msvc_toolset) | \([.signed_installers[] | "\(.url) (\(.thumbprint))"] | join("<br>")) |"' BUILD-ENVIRONMENT.json
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Upload checksums
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: SHA256SUMS-${{ needs.config.outputs.base_version }}
-          path: dist/SHA256SUMS
+          path: |
+            dist/SHA256SUMS
+            dist/BUILD-ENVIRONMENT.json
 
       # Signed build provenance for each zip, linking it to this workflow run and commit
       - name: Attest
@@ -354,10 +389,11 @@ jobs:
           - Fixes included: [PATCHES.md](${REPO_URL}/blob/${GITHUB_SHA}/PATCHES.md)
           - Built and tested by [run ${GITHUB_RUN_ID}](${REPO_URL}/actions/runs/${GITHUB_RUN_ID}) (GitHub keeps run logs for 90 days)
           - Checksums: \`SHA256SUMS\`
+          - Build environment (runner image, Visual Studio, MSVC toolset): \`BUILD-ENVIRONMENT.json\`
           - Provenance: \`gh attestation verify ${SAMPLE_ZIP} --repo ${GITHUB_REPOSITORY}\`
           EOF
           cat notes.md
-          gh release create "php-${VERSION}" dist/*.zip dist/SHA256SUMS \
+          gh release create "php-${VERSION}" dist/*.zip dist/SHA256SUMS dist/BUILD-ENVIRONMENT.json \
             -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --latest="$LATEST" \
             --title "PHP ${BASE_VERSION} Patch Level ${LEVEL} (${VERSION}) — unofficial EOL security build" \
             --notes-file notes.md

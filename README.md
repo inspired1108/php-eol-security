@@ -99,7 +99,11 @@ To change an input, for example a new SDK, builder or dependency series:
 4. Commit the reviewed lock.
 
 Not covered: the `windows-2022` runner image and its compilers, which GitHub
-provides and updates.
+provides and updates. They are recorded instead: each release ships
+`BUILD-ENVIRONMENT.json` with, for every variant, the runner image version,
+Windows and Visual Studio versions, the MSVC toolset used and any signed
+installer accepted (with its certificate thumbprint and SHA-256), so that a
+build can be matched to a later image or compiler advisory.
 
 ## Upstream watch
 
